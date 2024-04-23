@@ -1,6 +1,6 @@
 import heapq
 
-from exceptions.exceptions import DuplicateRecordIdentifier
+from exceptions.exceptions import DuplicateRecordIdentifier, InvalidLineFormat
 from logger.logger import LogFactory
 from utils.utils import measure_time
 logger = LogFactory('File Processor')
@@ -108,8 +108,9 @@ def process_input(lines_or_input_list, x, last_seen_ids):
         # if reading from the file
         if isinstance(line_or_tuple, str):
             if not is_valid_line(line_or_tuple):
-                logger.error(f"Error: Invalid line format: {line_or_tuple.strip()}")
-                continue
+                msg = f"Error: Invalid line format: {line_or_tuple.strip()}"
+                logger.error(msg)
+                raise InvalidLineFormat(msg)
 
             record_id, value = line_or_tuple.strip().split(" ", 1)
             value = int(value)

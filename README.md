@@ -8,7 +8,7 @@ Required to build and run the project:
 ## Set up the project
 
 1. Clone the repository: git clone https://github.com/baniyapratik/file_processor
-2. Navigate to the project directory: cd project_name
+2. Navigate to the project directory: cd file_processor
 3. Install dependencies: pip install -r requirements.txt
 
 ## Setting up PYTHONPATH
@@ -17,7 +17,7 @@ Before running the program, ensure that the project directory is included in you
 You can set the `PYTHONPATH` variable using the following command in your terminal:
 
 ```bash
-export PYTHONPATH=/path/to/your/project/directory:$PYTHONPATH
+export PYTHONPATH=/<path_to_your_project>/file_processor:$PYTHONPATH
 ````
 
 For additional help and options, you can use the -h or --help flag:
