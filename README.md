@@ -7,7 +7,7 @@ Required to build and run the project:
 
 ## Set up the project
 
-1. Clone the repository: git clone https://github.com/your_username/project_name.git
+1. Clone the repository: git clone https://github.com/baniyapratik/file_processor
 2. Navigate to the project directory: cd project_name
 3. Install dependencies: pip install -r requirements.txt
 
@@ -32,6 +32,19 @@ python main.py --file_path /path/to/your/file.txt --x 5
 ```
 
 ### To run the script with interactive input:
+```commandline
+python main.py --x 5
+```
+
+### To run the tests:
+```commandline
+pytest tests/
+```
+
+## Approach
+1. Reading file in chunks: Rather than loading the whole file into the memory at once, the approach used is to use f.readiness(1024) so reading 1024 bytes at a time.The program reads and processes chunks of the file, reducing the memory footprint.
+2. Using Heap: The solution uses heap to efficiently find x largest values by keeping only top x elements in the heap, which is crucial when handling large files.
+3. Error handling and logging: We have error and logging to provide informative messages to the users which helps debugging. 
 
 # Technical Specification
 

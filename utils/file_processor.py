@@ -5,6 +5,8 @@ from logger.logger import LogFactory
 from utils.utils import measure_time
 logger = LogFactory('File Processor')
 
+CHUNK_SIZE = 1024
+
 
 def generate_large_file(file_path, num_lines):
     """Generate a large test file"""
@@ -36,6 +38,10 @@ def process_input_from_user(input_list, x):
     Args:
       input_list: List of
       x: Number of records with the largest values to output.
+
+    Time Complexity: O(n log(k)), where n is the length of the lines and k is value of x. Space
+    Complexity: O(k), k is value of x, o(distinct_ids) for last_seen_ids which is bounded by the
+    number of lines n.
     """
     last_seen_ids = set()
     result = process_input(input_list, x, last_seen_ids)
@@ -52,6 +58,10 @@ def process_input_from_file(file_path, x):
     Args:
       file_path: Absolute path to the file.
       x: Number of records with the largest values to output.
+
+    Time Complexity: O(n log(k)), where n is the length of the lines and k is value of x.
+    Space Complexity: O(k), k is value of x, o(distinct_ids) for last_seen_ids which is bounded by the
+    number of lines n.
     """
     last_seen_ids = set()
     min_heap = []
@@ -59,7 +69,7 @@ def process_input_from_file(file_path, x):
     with open(file_path, 'r') as f:
         while True:
             # Read a chunk of lines from the file
-            lines = f.readlines(1024)
+            lines = f.readlines(CHUNK_SIZE)
 
             # If no more lines are read, break the loop
             if not lines:
@@ -88,6 +98,10 @@ def process_input(lines_or_input_list, x, last_seen_ids):
       lines_or_input_list: Iterable containing lines from the file or user input list.
       x: Number of records with the largest values to output.
       last_seen_ids: Set containing record IDs encountered so far.
+
+    Time Complexity: O(n log(k)), where n is the length of the lines and k is value of x.
+    Space Complexity: O(k), k is value of x, o(distinct_ids) for last_seen_ids which is bounded by the
+    number of lines n.
     """
     min_heap = []
     for line_or_tuple in lines_or_input_list:
